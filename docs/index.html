@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Getting Started With APIs in Python – Lindsay McNary - Tutorial Blog</title>
+<title>Footballers and Caps – Lindsay McNary - Data Acquisition Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-029b10fc0dc652dab2ec1ac156c1a037.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
@@ -115,10 +118,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Lindsay McNary - Tutorial Blog</span>
+    <span class="navbar-title">Lindsay McNary - Data Acquisition Blog</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -129,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text">Getting Started With APIs in Python</span></a>
+<span class="menu-text">Footballers and Caps</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
@@ -154,17 +155,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#what-is-an-api" id="toc-what-is-an-api" class="nav-link active" data-scroll-target="#what-is-an-api">What is an API?</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
+  <li><a href="#can-we-predict-a-football-players-caps" id="toc-can-we-predict-a-football-players-caps" class="nav-link" data-scroll-target="#can-we-predict-a-football-players-caps">Can We Predict a Football Players Caps?</a></li>
+  <li><a href="#ethics" id="toc-ethics" class="nav-link" data-scroll-target="#ethics">Ethics</a></li>
   </ul></li>
-  <li><a href="#how-apis-work-crash-course" id="toc-how-apis-work-crash-course" class="nav-link" data-scroll-target="#how-apis-work-crash-course">How APIs work (crash course)</a>
+  <li><a href="#how-to" id="toc-how-to" class="nav-link" data-scroll-target="#how-to">How To</a>
   <ul class="collapse">
-  <li><a href="#set-up-your-environment" id="toc-set-up-your-environment" class="nav-link" data-scroll-target="#set-up-your-environment">Set up Your Environment</a></li>
-  <li><a href="#making-api-requests" id="toc-making-api-requests" class="nav-link" data-scroll-target="#making-api-requests">Making API Requests</a></li>
-  <li><a href="#inspecting-and-using-the-data" id="toc-inspecting-and-using-the-data" class="nav-link" data-scroll-target="#inspecting-and-using-the-data">Inspecting and Using the Data</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li><a href="#cleaning-it-up" id="toc-cleaning-it-up" class="nav-link" data-scroll-target="#cleaning-it-up">Cleaning it up</a></li>
+  <li><a href="#eda-highlights" id="toc-eda-highlights" class="nav-link" data-scroll-target="#eda-highlights">EDA Highlights</a>
+  <ul class="collapse">
+  <li><a href="#other-links" id="toc-other-links" class="nav-link" data-scroll-target="#other-links">other links</a></li>
   </ul></li>
-  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -173,7 +177,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Getting Started With APIs in Python</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Footballers and Caps</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -190,105 +194,211 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="what-is-an-api" class="level1">
-<h1>What is an API?</h1>
-<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20230216170349/What-is-an-API.png" class="img-fluid" alt="API request and response flow"> An <strong>API</strong>, which stands for Application Programming Interface, is a set of rules that allows different software applications to communicate with each other. It’s sort of like a messenger that takes your request, delivers it to another system, and brings back a response. Without APIs, a lot of what we do online would not be possible. For example: - The weather app on your phone fetches weather data from an API instead of measuring it itself. - Payment services like Paypal and Venmo use APIs so that online payments can be processed securely. - Google Maps has an API that allows developers for other apps to embed maps, calculate routes, or estimate travel times. APIs act as the bridge between applications, making it possible for them to share data and functionality in a consistent and structured way.</p>
-<section id="learning-outcomes" class="level2">
-<h2 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
-<p>In this guide we will learn how to fetch data from a public API using Python’s requests library and print JSON responses. By the end of this tutorial, you will be able to:</p>
-<ul>
-<li>Set up your environment</li>
-<li>Make API requests using Python’s requests library</li>
-<li>Inspect and use the returned data</li>
-</ul>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>FIFA typically awards caps to footballers in internationsal football who make an official appearance for their national team. In this blog we will be looking through a dataset containing all mens footballers who have earned 100 or more international caps. I will try to see if other variables, like years active and confederations correlate with the caps.</p>
+<section id="can-we-predict-a-football-players-caps" class="level2">
+<h2 class="anchored" data-anchor-id="can-we-predict-a-football-players-caps">Can We Predict a Football Players Caps?</h2>
+<p>We will look to see if there is correlation between any of the variable like confederation and years active in the dataset to try to predict the amount of caps a player will have.</p>
+</section>
+<section id="ethics" class="level2">
+<h2 class="anchored" data-anchor-id="ethics">Ethics</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_the_Creative_Commons_Attribution-ShareAlike_4.0_International_License">Wikipedia Creative Commons Deed</a> states that we are free to share and adapt material for any purpose even commercially under the terms that we give appropriate credit in a reasonable manner, distribute our contributions under the same license as the original, and do not apply any additional restrictions that legally restrict others from doing anything the license permits.</p>
 </section>
 </section>
-<section id="how-apis-work-crash-course" class="level1">
-<h1>How APIs work (crash course)</h1>
-<p>A majority of APIs used on the internet are based on <strong>HTTP</strong>, which is the same protocol your web browser uses. When you interact with an API, you typically send a <strong>request</strong> to its server. The server processes your request and sends back a <strong>response</strong>.</p>
-<p>Within your request you can specify different things like: - the <strong>endpoint</strong>: this is the url where the resources you want access to are located - the <strong>method</strong>: this indicates what kind of action you want to perform. Popular methods include GET or POST (we will be focusing on GET requests in this tutorial) - some API requests may require additional information like location or authentication tokens</p>
-<p>The response you get back from the server will contain: - a <strong>status code</strong>: this indicates whether your request was successful (200) or if there was an error (404 Not Found, 500, etc) - the <strong>data</strong>: This is the information you requested typically formatted in JSON</p>
-<p>understanding these components is crucial for effectively working with APIs.</p>
-<section id="set-up-your-environment" class="level2">
-<h2 class="anchored" data-anchor-id="set-up-your-environment">Set up Your Environment</h2>
-<p>To get started with interacting with an API using Python, you will need to set your environment. This includes installing Python and installing the requests library.</p>
-<p>To make sure you have Python installed, you can check by running the following command in your terminal or command prompt:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you don’t have Python installed, you can download it from the official website: <a href="https://www.python.org/downloads/">python.org</a>.</p>
-<p>Next, make sure you have the requests library installed. You can install it by running the following command:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install requests</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Once installed, import it into your Python script</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="how-to" class="level1">
+<h1>How To</h1>
+<p>You can follow along with the sam website and table or find a different link to follow along with. I recommend following along wiht my link first them going over the steps again with your own link.</p>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
+<p>To get started we first need to download all of the packages we will be using into our environment</p>
+<div id="079404a1" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>After downloading the packages we need to load the table into python. First create a header like this:</p>
+<div id="f9a96afb" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {<span class="st">'User-Agent'</span>: <span class="st">'Insert Reason'</span>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>It is important to header, because many websites, including wikipedia, will block, redirect or return an incomplete HTML, because they assume you are a bot. By adding your own User-Agent, You look like a real person requesting information with a purpose.</p>
+<p>The next step is to scrape the data from wikipedia using requests. If you are using your own url just insert it over mine.</p>
+<div id="c2cf2d89" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_men</span><span class="sc">%27s</span><span class="st">_footballers_with_100_or_more_international_caps"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>to read the tables from html into python we will use read_html(). If the website has multiple tables. all of them will be returned with read_html in a list. it should be the ith table down on the website. In my example the table I used was the second one on the website.</p>
+<div id="34233f3f" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(r.text)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> tables[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\Admin\AppData\Local\Temp\ipykernel_22472\760241854.py:1: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.
+  tables = pd.read_html(r.text)</code></pre>
+</div>
+</div>
+<p>to ensure that you correctly grabbed the right table look at the head</p>
+<div id="9633bdc7" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Rank</th>
+<th data-quarto-table-cell-role="th">Players</th>
+<th data-quarto-table-cell-role="th">Nation</th>
+<th data-quarto-table-cell-role="th">Confederation</th>
+<th data-quarto-table-cell-role="th">Caps</th>
+<th data-quarto-table-cell-role="th">Debut</th>
+<th data-quarto-table-cell-role="th">Latest</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">0</th>
+<td>1</td>
+<td>Cristiano Ronaldo</td>
+<td>Portugal</td>
+<td>UEFA</td>
+<td>226.0</td>
+<td>20 August 2003</td>
+<td>13 November 2025</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">1</th>
+<td>2</td>
+<td>Bader Al-Mutawa</td>
+<td>Kuwait</td>
+<td>AFC</td>
+<td>202.0</td>
+<td>4 September 2003</td>
+<td>14 June 2022</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">2</th>
+<td>3</td>
+<td>Lionel Messi</td>
+<td>Argentina</td>
+<td>CONMEBOL</td>
+<td>196.0</td>
+<td>17 August 2005</td>
+<td>14 November 2025</td>
+</tr>
+<tr class="even">
+<th data-quarto-table-cell-role="th">3</th>
+<td>4</td>
+<td>Soh Chin Ann[a]</td>
+<td>Malaysia</td>
+<td>AFC</td>
+<td>195.0</td>
+<td>19 November 1969</td>
+<td>18 October 1984</td>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">4</th>
+<td>5</td>
+<td>Luka Modrić</td>
+<td>Croatia</td>
+<td>UEFA</td>
+<td>193.0</td>
+<td>1 March 2006</td>
+<td>14 November 2025</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
 </section>
-<section id="making-api-requests" class="level2">
-<h2 class="anchored" data-anchor-id="making-api-requests">Making API Requests</h2>
-<p>To make a request to an API, you will need the API endpoint URL. This is the URL where the API is hosted and where you will send your requests. We will use a GET request to fetch data from the API. In this example, we are sending a get request to an API and printing the JSON response</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">'https://my-json-server.typicode.com/typicode/demo/posts'</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> response.json()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This request asks the API to return a list of posts. The response is then converted to JSON format and printed to the console. It will look like a Python dictionary and will contain fields such as “id” and “title”.</p>
+<section id="cleaning-it-up" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-it-up">Cleaning it up</h2>
+<p>If you are using your own website you will not want to follow my steps exactly as cleaning datasets depend on the dataset.</p>
+<p>To clean up the dataset we will first replace the brackets at the end of a few of the players names using regex, drop the two australia players, because they are a part of two confederations, and we will want to drop all of the na values. You will do something similar with your dataset just more fitting for what your dataset needs fixed</p>
+<div id="51918785" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Players'</span>] <span class="op">=</span> df[<span class="st">'Players'</span>].<span class="bu">str</span>.replace(<span class="vs">r'</span><span class="ch">\[</span><span class="kw">(</span><span class="pp">[a-z]</span><span class="op">+</span><span class="kw">)</span><span class="ch">\]</span><span class="vs">'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'Confederation'</span>] <span class="op">!=</span> <span class="st">'OFC / AFC[1]'</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>For my dataset I added a few columns and dropped unneeded columns to make analyzing/visualizing my dataset easier. You can do something similar with yours or if you already have the columns you need maybe you should look into a new dataset to practice your skills.</p>
+<div id="7d77a439" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Debut'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Debut'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Latest'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Latest'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Years Active"</span>] <span class="op">=</span> <span class="bu">round</span>(((df[<span class="st">'Latest'</span>] <span class="op">-</span> df[<span class="st">'Debut'</span>]).dt.days <span class="op">/</span> <span class="dv">365</span>), <span class="dv">2</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Caps Per Year'</span>] <span class="op">=</span> <span class="bu">round</span>((df[<span class="st">'Caps'</span>] <span class="op">/</span> df[<span class="st">'Years Active'</span>]), <span class="dv">2</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values(by<span class="op">=</span>[<span class="st">'Caps Per Year'</span>, <span class="st">'Caps'</span>], ascending<span class="op">=</span><span class="va">False</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">'Players'</span>,<span class="st">'Nation'</span>, <span class="st">'Confederation'</span>, <span class="st">'Caps'</span>, <span class="st">'Years Active'</span>, <span class="st">'Caps Per Year'</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Use .head() to make sure everything is looking good!</p>
 </section>
-<section id="inspecting-and-using-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="inspecting-and-using-the-data">Inspecting and Using the Data</h2>
-<p>The API should return a JSON response that looks something like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Post 1"</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Post 2"</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">{</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Post 3"</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="ot">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Getting the data is just the first step. Once you have the response, you can inspect and use it in your application. You can treat it just like a Python dictionary or list. For example, you can loop through this list and access and print each ID and title like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> post <span class="kw">in</span> data:</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Post ID: </span><span class="sc">{</span>post[<span class="st">'id'</span>]<span class="sc">}</span><span class="ss">, Title: </span><span class="sc">{</span>post[<span class="st">'title'</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Output:</p>
-<pre><code>Post ID: 1, Title: Post 1
-Post ID: 2, Title: Post 2  
-Post ID: 3, Title: Post 3</code></pre>
-<p>In some of the more complex APIs, you may need to handle nested JSON arrays. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"user"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">1</span><span class="fu">,</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"John Doe"</span><span class="fu">,</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"posts"</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">101</span><span class="fu">,</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"First Post"</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">102</span><span class="fu">,</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"title"</span><span class="fu">:</span> <span class="st">"Second Post"</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If we wanted to access the titles of John Doe’s posts, we could do it like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> post <span class="kw">in</span> user_data[<span class="st">'user'</span>][<span class="st">'posts'</span>]:</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(post[<span class="st">'title'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Understanding how to navigate nested data structures is one of the key skills when working with APIs. ## Handling Errors and Status Codes When working with APIs, not every request will be successful. Maybe the endpoint is incorrect or the server is down. You can check the status code to see if your request was successful before working with the data.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Request was successful!"</span>)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># now you can begin working with the data</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Error: </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This kind of error handling will help you identify issues early and save time debugging later on.</p>
-</section>
-</section>
-<section id="conclusion" class="level1">
-<h1>Conclusion</h1>
-<p>APIs are powerful tools that allow you to access and interact with data from all different kinds of services. By using Python’s requests library, you can easily make API requests and work with the returned data.</p>
-<p>Now it’s your turn! Your task is to: - Create a new Python script - Use the requests library to make a GET request to a public API of your choice (I challenge you to find one with nested data!) - Try checking the status code of your request - Print the JSON response to the console - Inspect the data and try to access specific fields inside the JSON response. Experiment with different APIs and see what kinds of data you can work with.</p>
+<section id="eda-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="eda-highlights">EDA Highlights</h2>
+<p>Now that our data is cleaned and organized, we can start exploring it to better understand whether we can use this dataset to predict the caps of a player</p>
+<p>first we can look at some basic summary statistics to see thing like how many obsevations we have, how sprea out the values are and what the typical player in the dataset looks like</p>
+<div id="2c1498b8" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.describe()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'Confederation'</span>)[<span class="st">"Caps"</span>].mean()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.corrcoef(df[<span class="st">'Years Active'</span>], df[<span class="st">'Caps'</span>])[<span class="dv">0</span>,<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.3615047149142935</code></pre>
+</div>
+</div>
+<p>from these we can see that the means of caps from each of the confederations are really similar and that there is a very slight correlation between the years a player is active and the amount of caps they earn.</p>
+<p>We can also visualize the data to see if we can find any other patterns:</p>
+<div id="7b5ecf8a" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> {<span class="st">'UEFA'</span> : <span class="st">'red'</span>, <span class="st">'AFC'</span> : <span class="st">'purple'</span>, <span class="st">'CONCACAF'</span> : <span class="st">'yellow'</span>, <span class="st">'CONMEBOL'</span> : <span class="st">'blue'</span>, <span class="st">'CAF'</span> : <span class="st">'green'</span>}</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x <span class="op">=</span> <span class="st">'Years Active'</span>, y <span class="op">=</span> <span class="st">'Caps'</span>, data <span class="op">=</span> df, hue <span class="op">=</span> <span class="st">'Confederation'</span>, palette <span class="op">=</span> color, alpha <span class="op">=</span> <span class="fl">0.5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/cell-10-output-1.png" width="593" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>looking at the graph there does not appear to be any patterns or correlations between the variables. We can conclude that we cannot use the amount of years a player is active or the confederation that player is a part of to predict caps</p>
+<section id="other-links" class="level3">
+<h3 class="anchored" data-anchor-id="other-links">other links</h3>
+<p>link to my github code click <a href="https://github.com/lmcnary/data_acquisition_blog.git">here</a></p>
+<p>link to the wikipedia article with the table click <a href="https://en.wikipedia.org/wiki/List_of_men%27s_footballers_with_100_or_more_international_caps">here</a></p>
 
 
 <!-- -->
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -743,153 +853,115 @@ Post ID: 3, Title: Post 3</code></pre>
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Getting Started With APIs in Python"</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu"># What is an API?</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="al">![API request and response flow](https://media.geeksforgeeks.org/wp-content/uploads/20230216170349/What-is-an-API.png)</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>An **API**, which stands for Application Programming Interface, is a set of rules that allows different software applications to communicate with each other. It's sort of like a messenger that takes your request, delivers it to another system, and brings back a response. Without APIs, a lot of what we do online would not be possible. For example:</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>The weather app on your phone fetches weather data from an API instead of measuring it itself.</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Payment services like Paypal and Venmo use APIs so that online payments can be processed securely.</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Google Maps has an API that allows developers for other apps to embed maps, calculate routes, or estimate travel times.</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>APIs act as the bridge between applications, making it possible for them to share data and functionality in a consistent and structured way.</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning Outcomes</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>In this guide we will learn how to fetch data from a public API using Python’s requests library and print JSON responses. By the end of this tutorial, you will be able to: </span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Set up your environment</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Make API requests using Python's requests library</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inspect and use the returned data</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># How APIs work (crash course)</span></span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>A majority of APIs used on the internet are based on **HTTP**, which is the same protocol your web browser uses. When you interact with an API, you typically send a **request** to its server. The server processes your request and sends back a **response**.</span>
-<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>Within your request you can specify different things like:</span>
-<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the **endpoint**: this is the url where the resources you want access to are located</span>
-<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the **method**: this indicates what kind of action you want to perform. Popular methods include GET or POST (we will be focusing on GET requests in this tutorial)</span>
-<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>some API requests may require additional information like location or authentication tokens</span>
-<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>The response you get back from the server will contain:</span>
-<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>a **status code**: this indicates whether your request was successful (200) or if there was an error (404 Not Found, 500, etc)</span>
-<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>the **data**: This is the information you requested typically formatted in JSON</span>
-<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>understanding these components is crucial for effectively working with APIs.</span>
-<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-36"><a href="#cb11-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Set up Your Environment</span></span>
-<span id="cb11-37"><a href="#cb11-37" aria-hidden="true" tabindex="-1"></a>To get started with interacting with an API using Python, you will need to set your environment. This includes installing Python and installing the requests library.</span>
-<span id="cb11-38"><a href="#cb11-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-39"><a href="#cb11-39" aria-hidden="true" tabindex="-1"></a>To make sure you have Python installed, you can check by running the following command in your terminal or command prompt:</span>
-<span id="cb11-40"><a href="#cb11-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-41"><a href="#cb11-41" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb11-42"><a href="#cb11-42" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">--version</span></span>
-<span id="cb11-43"><a href="#cb11-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-44"><a href="#cb11-44" aria-hidden="true" tabindex="-1"></a>If you don't have Python installed, you can download it from the official website: <span class="co">[</span><span class="ot">python.org</span><span class="co">](https://www.python.org/downloads/)</span>.</span>
-<span id="cb11-45"><a href="#cb11-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-46"><a href="#cb11-46" aria-hidden="true" tabindex="-1"></a>Next, make sure you have the requests library installed. You can install it by running the following command:</span>
-<span id="cb11-47"><a href="#cb11-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-48"><a href="#cb11-48" aria-hidden="true" tabindex="-1"></a><span class="in">```bash</span></span>
-<span id="cb11-49"><a href="#cb11-49" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install requests</span>
-<span id="cb11-50"><a href="#cb11-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-51"><a href="#cb11-51" aria-hidden="true" tabindex="-1"></a>Once installed, import it into your Python script</span>
-<span id="cb11-52"><a href="#cb11-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-53"><a href="#cb11-53" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb11-54"><a href="#cb11-54" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
-<span id="cb11-55"><a href="#cb11-55" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-56"><a href="#cb11-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-57"><a href="#cb11-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Making API Requests</span></span>
-<span id="cb11-58"><a href="#cb11-58" aria-hidden="true" tabindex="-1"></a>To make a request to an API, you will need the API endpoint URL. This is the URL where the API is hosted and where you will send your requests. We will use a GET request to fetch data from the API.</span>
-<span id="cb11-59"><a href="#cb11-59" aria-hidden="true" tabindex="-1"></a>In this example, we are sending a get request to an API and printing the JSON response </span>
-<span id="cb11-60"><a href="#cb11-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-61"><a href="#cb11-61" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb11-62"><a href="#cb11-62" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(<span class="st">'https://my-json-server.typicode.com/typicode/demo/posts'</span>)</span>
-<span id="cb11-63"><a href="#cb11-63" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> response.json()</span>
-<span id="cb11-64"><a href="#cb11-64" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data)</span>
-<span id="cb11-65"><a href="#cb11-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-66"><a href="#cb11-66" aria-hidden="true" tabindex="-1"></a>This request asks the API to return a list of posts. The response is then converted to JSON format and printed to the console. It will look like a Python dictionary and will contain fields such as "id" and "title".</span>
-<span id="cb11-67"><a href="#cb11-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-68"><a href="#cb11-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Inspecting and Using the Data</span></span>
-<span id="cb11-69"><a href="#cb11-69" aria-hidden="true" tabindex="-1"></a>The API should return a JSON response that looks something like this:</span>
-<span id="cb11-70"><a href="#cb11-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-71"><a href="#cb11-71" aria-hidden="true" tabindex="-1"></a><span class="in">```json</span></span>
-<span id="cb11-72"><a href="#cb11-72" aria-hidden="true" tabindex="-1"></a>[</span>
-<span id="cb11-73"><a href="#cb11-73" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb11-74"><a href="#cb11-74" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb11-75"><a href="#cb11-75" aria-hidden="true" tabindex="-1"></a>    <span class="st">"title"</span><span class="op">:</span> <span class="st">"Post 1"</span></span>
-<span id="cb11-76"><a href="#cb11-76" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb11-77"><a href="#cb11-77" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb11-78"><a href="#cb11-78" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb11-79"><a href="#cb11-79" aria-hidden="true" tabindex="-1"></a>    <span class="st">"title"</span><span class="op">:</span> <span class="st">"Post 2"</span></span>
-<span id="cb11-80"><a href="#cb11-80" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb11-81"><a href="#cb11-81" aria-hidden="true" tabindex="-1"></a>  {</span>
-<span id="cb11-82"><a href="#cb11-82" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span><span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
-<span id="cb11-83"><a href="#cb11-83" aria-hidden="true" tabindex="-1"></a>    <span class="st">"title"</span><span class="op">:</span> <span class="st">"Post 3"</span></span>
-<span id="cb11-84"><a href="#cb11-84" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb11-85"><a href="#cb11-85" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb11-86"><a href="#cb11-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-87"><a href="#cb11-87" aria-hidden="true" tabindex="-1"></a>Getting the data is just the first step. Once you have the response, you can inspect and use it in your application. You can treat it just like a Python dictionary or list. For example, you can loop through this list and access and print each ID and title like this:</span>
-<span id="cb11-88"><a href="#cb11-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-89"><a href="#cb11-89" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb11-90"><a href="#cb11-90" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> post <span class="kw">in</span> data:</span>
-<span id="cb11-91"><a href="#cb11-91" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Post ID: </span><span class="sc">{</span>post[<span class="st">'id'</span>]<span class="sc">}</span><span class="ss">, Title: </span><span class="sc">{</span>post[<span class="st">'title'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-92"><a href="#cb11-92" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-93"><a href="#cb11-93" aria-hidden="true" tabindex="-1"></a>Output:</span>
-<span id="cb11-94"><a href="#cb11-94" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-95"><a href="#cb11-95" aria-hidden="true" tabindex="-1"></a><span class="in">Post ID: 1, Title: Post 1</span></span>
-<span id="cb11-96"><a href="#cb11-96" aria-hidden="true" tabindex="-1"></a><span class="in">Post ID: 2, Title: Post 2  </span></span>
-<span id="cb11-97"><a href="#cb11-97" aria-hidden="true" tabindex="-1"></a><span class="in">Post ID: 3, Title: Post 3</span></span>
-<span id="cb11-98"><a href="#cb11-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-99"><a href="#cb11-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-100"><a href="#cb11-100" aria-hidden="true" tabindex="-1"></a>In some of the more complex APIs, you may need to handle nested JSON arrays. For example:</span>
-<span id="cb11-101"><a href="#cb11-101" aria-hidden="true" tabindex="-1"></a><span class="in">```json</span></span>
-<span id="cb11-102"><a href="#cb11-102" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb11-103"><a href="#cb11-103" aria-hidden="true" tabindex="-1"></a>  <span class="st">"user"</span><span class="op">:</span> {</span>
-<span id="cb11-104"><a href="#cb11-104" aria-hidden="true" tabindex="-1"></a>    <span class="st">"id"</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb11-105"><a href="#cb11-105" aria-hidden="true" tabindex="-1"></a>    <span class="st">"name"</span><span class="op">:</span> <span class="st">"John Doe"</span><span class="op">,</span></span>
-<span id="cb11-106"><a href="#cb11-106" aria-hidden="true" tabindex="-1"></a>    <span class="st">"posts"</span><span class="op">:</span> [</span>
-<span id="cb11-107"><a href="#cb11-107" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb11-108"><a href="#cb11-108" aria-hidden="true" tabindex="-1"></a>        <span class="st">"id"</span><span class="op">:</span> <span class="dv">101</span><span class="op">,</span></span>
-<span id="cb11-109"><a href="#cb11-109" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span><span class="op">:</span> <span class="st">"First Post"</span></span>
-<span id="cb11-110"><a href="#cb11-110" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
-<span id="cb11-111"><a href="#cb11-111" aria-hidden="true" tabindex="-1"></a>      {</span>
-<span id="cb11-112"><a href="#cb11-112" aria-hidden="true" tabindex="-1"></a>        <span class="st">"id"</span><span class="op">:</span> <span class="dv">102</span><span class="op">,</span></span>
-<span id="cb11-113"><a href="#cb11-113" aria-hidden="true" tabindex="-1"></a>        <span class="st">"title"</span><span class="op">:</span> <span class="st">"Second Post"</span></span>
-<span id="cb11-114"><a href="#cb11-114" aria-hidden="true" tabindex="-1"></a>      }</span>
-<span id="cb11-115"><a href="#cb11-115" aria-hidden="true" tabindex="-1"></a>    ]</span>
-<span id="cb11-116"><a href="#cb11-116" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb11-117"><a href="#cb11-117" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-118"><a href="#cb11-118" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-119"><a href="#cb11-119" aria-hidden="true" tabindex="-1"></a>If we wanted to access the titles of John Doe's posts, we could do it like this:</span>
-<span id="cb11-120"><a href="#cb11-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-121"><a href="#cb11-121" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb11-122"><a href="#cb11-122" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> post <span class="kw">in</span> user_data[<span class="st">'user'</span>][<span class="st">'posts'</span>]:</span>
-<span id="cb11-123"><a href="#cb11-123" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(post[<span class="st">'title'</span>])</span>
-<span id="cb11-124"><a href="#cb11-124" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-125"><a href="#cb11-125" aria-hidden="true" tabindex="-1"></a>Understanding how to navigate nested data structures is one of the key skills when working with APIs.</span>
-<span id="cb11-126"><a href="#cb11-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## Handling Errors and Status Codes</span></span>
-<span id="cb11-127"><a href="#cb11-127" aria-hidden="true" tabindex="-1"></a>When working with APIs, not every request will be successful. Maybe the endpoint is incorrect or the server is down. You can check the status code to see if your request was successful before working with the data.</span>
-<span id="cb11-128"><a href="#cb11-128" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb11-129"><a href="#cb11-129" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:</span>
-<span id="cb11-130"><a href="#cb11-130" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Request was successful!"</span>)</span>
-<span id="cb11-131"><a href="#cb11-131" aria-hidden="true" tabindex="-1"></a>    <span class="co"># now you can begin working with the data</span></span>
-<span id="cb11-132"><a href="#cb11-132" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb11-133"><a href="#cb11-133" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Error: </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb11-134"><a href="#cb11-134" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb11-135"><a href="#cb11-135" aria-hidden="true" tabindex="-1"></a>This kind of error handling will help you identify issues early and save time debugging later on.</span>
-<span id="cb11-136"><a href="#cb11-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-137"><a href="#cb11-137" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
-<span id="cb11-138"><a href="#cb11-138" aria-hidden="true" tabindex="-1"></a>APIs are powerful tools that allow you to access and interact with data from all different kinds of services. By using Python's requests library, you can easily make API requests and work with the returned data.</span>
-<span id="cb11-139"><a href="#cb11-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-140"><a href="#cb11-140" aria-hidden="true" tabindex="-1"></a>Now it's your turn!</span>
-<span id="cb11-141"><a href="#cb11-141" aria-hidden="true" tabindex="-1"></a>Your task is to:</span>
-<span id="cb11-142"><a href="#cb11-142" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Create a new Python script</span>
-<span id="cb11-143"><a href="#cb11-143" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Use the requests library to make a GET request to a public API of your choice (I challenge you to find one with nested data!)</span>
-<span id="cb11-144"><a href="#cb11-144" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try checking the status code of your request</span>
-<span id="cb11-145"><a href="#cb11-145" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Print the JSON response to the console</span>
-<span id="cb11-146"><a href="#cb11-146" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Inspect the data and try to access specific fields inside the JSON response.</span>
-<span id="cb11-147"><a href="#cb11-147" aria-hidden="true" tabindex="-1"></a>Experiment with different APIs and see what kinds of data you can work with.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Footballers and Caps"</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="an">jupyter:</span><span class="co"> python3</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>FIFA typically awards caps to footballers in internationsal football who make an official appearance for their national team. In this blog we will be looking through a dataset containing all mens footballers who have earned 100 or more international caps. I will try to see if other variables, like years active and confederations correlate with the caps.</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">## Can We Predict a Football Players Caps?</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>We will look to see if there is correlation between any of the variable like confederation and years active in the dataset to try to predict the amount of caps a player will have.</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ethics</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>The <span class="co">[</span><span class="ot">Wikipedia Creative Commons Deed</span><span class="co">](https://en.wikipedia.org/wiki/Wikipedia:Text_of_the_Creative_Commons_Attribution-ShareAlike_4.0_International_License)</span> states that we are free to share and adapt material for any purpose even commercially under the terms that we give appropriate credit in a reasonable manner, distribute our contributions under the same license as the original, and do not apply any additional restrictions that legally restrict others from doing anything the license permits.</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># How To</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>You can follow along with the sam website and table or find a different link to follow along with. I recommend following along wiht my link first them going over the steps again with your own link.</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Getting Started</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>To get started we first need to download all of the packages we will be using into our environment</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>After downloading the packages we need to load the table into python. First create a header like this:</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {<span class="st">'User-Agent'</span>: <span class="st">'Insert Reason'</span>}</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>It is important to header, because many websites, including wikipedia, will block, redirect or return an incomplete HTML, because they assume you are a bot. By adding your own User-Agent, You look like a real person requesting information with a purpose.</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>The next step is to scrape the data from wikipedia using requests. If you are using your own url just insert it over mine. </span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_men</span><span class="sc">%27s</span><span class="st">_footballers_with_100_or_more_international_caps"</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> requests.get(url, headers<span class="op">=</span>headers)</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>to read the tables from html into python we will use read_html(). If the website has multiple tables. all of them will be returned with read_html in a list. it should be the ith table down on the website. In my example the table I used was the second one on the website.</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(r.text)</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> tables[<span class="dv">1</span>]</span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>to ensure that you correctly grabbed the right table look at the head</span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>df.head()</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cleaning it up</span></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>If you are using your own website you will not want to follow my steps exactly as cleaning datasets depend on the dataset.</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>To clean up the dataset we will first replace the brackets at the end of a few of the players names using regex, drop the two australia players, because they are a part of two confederations, and we will want to drop all of the na values. You will do something similar with your dataset just more fitting for what your dataset needs fixed</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Players'</span>] <span class="op">=</span> df[<span class="st">'Players'</span>].<span class="bu">str</span>.replace(<span class="vs">r'</span><span class="ch">\[</span><span class="kw">(</span><span class="pp">[a-z]</span><span class="op">+</span><span class="kw">)</span><span class="ch">\]</span><span class="vs">'</span>, <span class="st">''</span>, regex<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[df[<span class="st">'Confederation'</span>] <span class="op">!=</span> <span class="st">'OFC / AFC[1]'</span>]</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.dropna()</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>For my dataset I added a few columns and dropped unneeded columns to make analyzing/visualizing my dataset easier. You can do something similar with yours or if you already have the columns you need maybe you should look into a new dataset to practice your skills.</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Debut'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Debut'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Latest'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'Latest'</span>], errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Years Active"</span>] <span class="op">=</span> <span class="bu">round</span>(((df[<span class="st">'Latest'</span>] <span class="op">-</span> df[<span class="st">'Debut'</span>]).dt.days <span class="op">/</span> <span class="dv">365</span>), <span class="dv">2</span>)</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'Caps Per Year'</span>] <span class="op">=</span> <span class="bu">round</span>((df[<span class="st">'Caps'</span>] <span class="op">/</span> df[<span class="st">'Years Active'</span>]), <span class="dv">2</span>)</span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.sort_values(by<span class="op">=</span>[<span class="st">'Caps Per Year'</span>, <span class="st">'Caps'</span>], ascending<span class="op">=</span><span class="va">False</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df[[<span class="st">'Players'</span>,<span class="st">'Nation'</span>, <span class="st">'Confederation'</span>, <span class="st">'Caps'</span>, <span class="st">'Years Active'</span>, <span class="st">'Caps Per Year'</span>]]</span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>Use .head() to make sure everything is looking good!</span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a><span class="fu">## EDA Highlights</span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>Now that our data is cleaned and organized, we can start exploring it to better understand whether we can use this dataset to predict the caps of a player</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>first we can look at some basic summary statistics to see thing like how many obsevations we have, how sprea out the values are and what the typical player in the dataset looks like</span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>df.describe()</span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>df.groupby(<span class="st">'Confederation'</span>)[<span class="st">"Caps"</span>].mean()</span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.corrcoef(df[<span class="st">'Years Active'</span>], df[<span class="st">'Caps'</span>])[<span class="dv">0</span>,<span class="dv">1</span>])</span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>from these we can see that the means of caps from each of the confederations are really similar and that there is a very slight correlation between the years a player is active and the amount of caps they earn.</span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>We can also visualize the data to see if we can find any other patterns:</span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> {<span class="st">'UEFA'</span> : <span class="st">'red'</span>, <span class="st">'AFC'</span> : <span class="st">'purple'</span>, <span class="st">'CONCACAF'</span> : <span class="st">'yellow'</span>, <span class="st">'CONMEBOL'</span> : <span class="st">'blue'</span>, <span class="st">'CAF'</span> : <span class="st">'green'</span>}</span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(x <span class="op">=</span> <span class="st">'Years Active'</span>, y <span class="op">=</span> <span class="st">'Caps'</span>, data <span class="op">=</span> df, hue <span class="op">=</span> <span class="st">'Confederation'</span>, palette <span class="op">=</span> color, alpha <span class="op">=</span> <span class="fl">0.5</span>)</span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>looking at the graph there does not appear to be any patterns or correlations between the variables. We can conclude that we cannot use the amount of years a player is active or the confederation that player is a part of to predict caps</span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a><span class="fu">### other links</span></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>link to my github code click <span class="co">[</span><span class="ot">here</span><span class="co">](https://github.com/lmcnary/data_acquisition_blog.git)</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>link to the wikipedia article with the table click <span class="co">[</span><span class="ot">here</span><span class="co">](https://en.wikipedia.org/wiki/List_of_men%27s_footballers_with_100_or_more_international_caps)</span></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

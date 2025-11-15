@@ -3,14 +3,14 @@ project:
   output-dir: docs
 
 website:
-  title: "Lindsay McNary - Tutorial Blog"
-  description: "Learning how to API"
+  title: "Lindsay McNary - Data Acquisition Blog"
+  description: "Learning how to webscrape"
   
   navbar:
     background: primary
     left:
-      - text: "Getting Started With APIs in Python"
-        href: index.md
+      - text: "Footballers and Caps"
+        href: index.qmd
       
     right:
       - icon: github

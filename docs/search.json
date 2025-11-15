@@ -2,36 +2,43 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Getting Started With APIs in Python",
+    "title": "Footballers and Caps",
     "section": "",
-    "text": "An API, which stands for Application Programming Interface, is a set of rules that allows different software applications to communicate with each other. It’s sort of like a messenger that takes your request, delivers it to another system, and brings back a response. Without APIs, a lot of what we do online would not be possible. For example: - The weather app on your phone fetches weather data from an API instead of measuring it itself. - Payment services like Paypal and Venmo use APIs so that online payments can be processed securely. - Google Maps has an API that allows developers for other apps to embed maps, calculate routes, or estimate travel times. APIs act as the bridge between applications, making it possible for them to share data and functionality in a consistent and structured way.\n\n\nIn this guide we will learn how to fetch data from a public API using Python’s requests library and print JSON responses. By the end of this tutorial, you will be able to:\n\nSet up your environment\nMake API requests using Python’s requests library\nInspect and use the returned data"
+    "text": "FIFA typically awards caps to footballers in internationsal football who make an official appearance for their national team. In this blog we will be looking through a dataset containing all mens footballers who have earned 100 or more international caps. I will try to see if other variables, like years active and confederations correlate with the caps.\n\n\nWe will look to see if there is correlation between any of the variable like confederation and years active in the dataset to try to predict the amount of caps a player will have.\n\n\n\nThe Wikipedia Creative Commons Deed states that we are free to share and adapt material for any purpose even commercially under the terms that we give appropriate credit in a reasonable manner, distribute our contributions under the same license as the original, and do not apply any additional restrictions that legally restrict others from doing anything the license permits."
   },
   {
-    "objectID": "index.html#learning-outcomes",
-    "href": "index.html#learning-outcomes",
-    "title": "Getting Started With APIs in Python",
+    "objectID": "index.html#can-we-predict-a-football-players-caps",
+    "href": "index.html#can-we-predict-a-football-players-caps",
+    "title": "Footballers and Caps",
     "section": "",
-    "text": "In this guide we will learn how to fetch data from a public API using Python’s requests library and print JSON responses. By the end of this tutorial, you will be able to:\n\nSet up your environment\nMake API requests using Python’s requests library\nInspect and use the returned data"
+    "text": "We will look to see if there is correlation between any of the variable like confederation and years active in the dataset to try to predict the amount of caps a player will have."
   },
   {
-    "objectID": "index.html#set-up-your-environment",
-    "href": "index.html#set-up-your-environment",
-    "title": "Getting Started With APIs in Python",
-    "section": "Set up Your Environment",
-    "text": "Set up Your Environment\nTo get started with interacting with an API using Python, you will need to set your environment. This includes installing Python and installing the requests library.\nTo make sure you have Python installed, you can check by running the following command in your terminal or command prompt:\npython --version\nIf you don’t have Python installed, you can download it from the official website: python.org.\nNext, make sure you have the requests library installed. You can install it by running the following command:\npip install requests\nOnce installed, import it into your Python script\nimport requests"
+    "objectID": "index.html#ethics",
+    "href": "index.html#ethics",
+    "title": "Footballers and Caps",
+    "section": "",
+    "text": "The Wikipedia Creative Commons Deed states that we are free to share and adapt material for any purpose even commercially under the terms that we give appropriate credit in a reasonable manner, distribute our contributions under the same license as the original, and do not apply any additional restrictions that legally restrict others from doing anything the license permits."
   },
   {
-    "objectID": "index.html#making-api-requests",
-    "href": "index.html#making-api-requests",
-    "title": "Getting Started With APIs in Python",
-    "section": "Making API Requests",
-    "text": "Making API Requests\nTo make a request to an API, you will need the API endpoint URL. This is the URL where the API is hosted and where you will send your requests. We will use a GET request to fetch data from the API. In this example, we are sending a get request to an API and printing the JSON response\nresponse = requests.get('https://my-json-server.typicode.com/typicode/demo/posts')\ndata = response.json()\nprint(data)\nThis request asks the API to return a list of posts. The response is then converted to JSON format and printed to the console. It will look like a Python dictionary and will contain fields such as “id” and “title”."
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "Footballers and Caps",
+    "section": "Getting Started",
+    "text": "Getting Started\nTo get started we first need to download all of the packages we will be using into our environment\n\n\nCode\nimport requests\nimport re\nimport pandas as pd\nimport numpy as np\nimport seaborn as sns\n\n\nAfter downloading the packages we need to load the table into python. First create a header like this:\n\n\nCode\nheaders = {'User-Agent': 'Insert Reason'}\n\n\nIt is important to header, because many websites, including wikipedia, will block, redirect or return an incomplete HTML, because they assume you are a bot. By adding your own User-Agent, You look like a real person requesting information with a purpose.\nThe next step is to scrape the data from wikipedia using requests. If you are using your own url just insert it over mine.\n\n\nCode\nurl = \"https://en.wikipedia.org/wiki/List_of_men%27s_footballers_with_100_or_more_international_caps\"\nr = requests.get(url, headers=headers)\n\n\nto read the tables from html into python we will use read_html(). If the website has multiple tables. all of them will be returned with read_html in a list. it should be the ith table down on the website. In my example the table I used was the second one on the website.\n\n\nCode\ntables = pd.read_html(r.text)\ndf = tables[1]\n\n\nC:\\Users\\Admin\\AppData\\Local\\Temp\\ipykernel_22472\\760241854.py:1: FutureWarning: Passing literal html to 'read_html' is deprecated and will be removed in a future version. To read from a literal string, wrap it in a 'StringIO' object.\n  tables = pd.read_html(r.text)\n\n\nto ensure that you correctly grabbed the right table look at the head\n\n\nCode\ndf.head()\n\n\n\n\n\n\n\n\n\nRank\nPlayers\nNation\nConfederation\nCaps\nDebut\nLatest\n\n\n\n\n0\n1\nCristiano Ronaldo\nPortugal\nUEFA\n226.0\n20 August 2003\n13 November 2025\n\n\n1\n2\nBader Al-Mutawa\nKuwait\nAFC\n202.0\n4 September 2003\n14 June 2022\n\n\n2\n3\nLionel Messi\nArgentina\nCONMEBOL\n196.0\n17 August 2005\n14 November 2025\n\n\n3\n4\nSoh Chin Ann[a]\nMalaysia\nAFC\n195.0\n19 November 1969\n18 October 1984\n\n\n4\n5\nLuka Modrić\nCroatia\nUEFA\n193.0\n1 March 2006\n14 November 2025"
   },
   {
-    "objectID": "index.html#inspecting-and-using-the-data",
-    "href": "index.html#inspecting-and-using-the-data",
-    "title": "Getting Started With APIs in Python",
-    "section": "Inspecting and Using the Data",
-    "text": "Inspecting and Using the Data\nThe API should return a JSON response that looks something like this:\n[\n  {\n    \"id\": 1,\n    \"title\": \"Post 1\"\n  },\n  {\n    \"id\": 2,\n    \"title\": \"Post 2\"\n  },\n  {\n    \"id\": 3,\n    \"title\": \"Post 3\"\n  }\n]\nGetting the data is just the first step. Once you have the response, you can inspect and use it in your application. You can treat it just like a Python dictionary or list. For example, you can loop through this list and access and print each ID and title like this:\nfor post in data:\n    print(f\"Post ID: {post['id']}, Title: {post['title']}\")\nOutput:\nPost ID: 1, Title: Post 1\nPost ID: 2, Title: Post 2  \nPost ID: 3, Title: Post 3\nIn some of the more complex APIs, you may need to handle nested JSON arrays. For example:\n{\n  \"user\": {\n    \"id\": 1,\n    \"name\": \"John Doe\",\n    \"posts\": [\n      {\n        \"id\": 101,\n        \"title\": \"First Post\"\n      },\n      {\n        \"id\": 102,\n        \"title\": \"Second Post\"\n      }\n    ]\n  }\n}\nIf we wanted to access the titles of John Doe’s posts, we could do it like this:\nfor post in user_data['user']['posts']:\n    print(post['title'])\nUnderstanding how to navigate nested data structures is one of the key skills when working with APIs. ## Handling Errors and Status Codes When working with APIs, not every request will be successful. Maybe the endpoint is incorrect or the server is down. You can check the status code to see if your request was successful before working with the data.\nif response.status_code == 200:\n    print(\"Request was successful!\")\n    # now you can begin working with the data\nelse:\n    print(f\"Error: {response.status_code}\")\nThis kind of error handling will help you identify issues early and save time debugging later on."
+    "objectID": "index.html#cleaning-it-up",
+    "href": "index.html#cleaning-it-up",
+    "title": "Footballers and Caps",
+    "section": "Cleaning it up",
+    "text": "Cleaning it up\nIf you are using your own website you will not want to follow my steps exactly as cleaning datasets depend on the dataset.\nTo clean up the dataset we will first replace the brackets at the end of a few of the players names using regex, drop the two australia players, because they are a part of two confederations, and we will want to drop all of the na values. You will do something similar with your dataset just more fitting for what your dataset needs fixed\n\n\nCode\ndf['Players'] = df['Players'].str.replace(r'\\[([a-z]+)\\]', '', regex=True)\ndf = df[df['Confederation'] != 'OFC / AFC[1]']\ndf = df.dropna()\n\n\nFor my dataset I added a few columns and dropped unneeded columns to make analyzing/visualizing my dataset easier. You can do something similar with yours or if you already have the columns you need maybe you should look into a new dataset to practice your skills.\n\n\nCode\ndf['Debut'] = pd.to_datetime(df['Debut'], errors='coerce')\ndf['Latest'] = pd.to_datetime(df['Latest'], errors='coerce')\ndf[\"Years Active\"] = round(((df['Latest'] - df['Debut']).dt.days / 365), 2)\ndf['Caps Per Year'] = round((df['Caps'] / df['Years Active']), 2)\ndf = df.sort_values(by=['Caps Per Year', 'Caps'], ascending=False).reset_index(drop=True)\ndf = df[['Players','Nation', 'Confederation', 'Caps', 'Years Active', 'Caps Per Year']]\n\n\nUse .head() to make sure everything is looking good!"
+  },
+  {
+    "objectID": "index.html#eda-highlights",
+    "href": "index.html#eda-highlights",
+    "title": "Footballers and Caps",
+    "section": "EDA Highlights",
+    "text": "EDA Highlights\nNow that our data is cleaned and organized, we can start exploring it to better understand whether we can use this dataset to predict the caps of a player\nfirst we can look at some basic summary statistics to see thing like how many obsevations we have, how sprea out the values are and what the typical player in the dataset looks like\n\n\nCode\ndf.describe()\ndf.groupby('Confederation')[\"Caps\"].mean()\nprint(np.corrcoef(df['Years Active'], df['Caps'])[0,1])\n\n\n0.3615047149142935\n\n\nfrom these we can see that the means of caps from each of the confederations are really similar and that there is a very slight correlation between the years a player is active and the amount of caps they earn.\nWe can also visualize the data to see if we can find any other patterns:\n\n\nCode\ncolor = {'UEFA' : 'red', 'AFC' : 'purple', 'CONCACAF' : 'yellow', 'CONMEBOL' : 'blue', 'CAF' : 'green'}\nsns.scatterplot(x = 'Years Active', y = 'Caps', data = df, hue = 'Confederation', palette = color, alpha = 0.5)\n\n\n\n\n\n\n\n\n\nlooking at the graph there does not appear to be any patterns or correlations between the variables. We can conclude that we cannot use the amount of years a player is active or the confederation that player is a part of to predict caps\n\nother links\nlink to my github code click here\nlink to the wikipedia article with the table click here"
   }
 ]
